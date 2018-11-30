@@ -25,6 +25,7 @@
             this.loadLanguages();
             this.loadGroups();
             this.load();
+            Dispatcher.add('save-attribute', this);
         },
         methods: {
             load() {
@@ -70,8 +71,8 @@
         <template v-if="loaded">
 
             <transition name="fade">
-                <candy-tabs initial="orderdetails">
-                    <candy-tab name="Attribute Details" handle="collection-details" dispatch="save-order" :selected="true">
+                <candy-tabs initial="save-attribute">
+                    <candy-tab name="Attribute Details" handle="collection-details" dispatch="save-attribute" :selected="true">
                         <div class="panel">
                             <div class="panel-body">
                                 <div class="row">
@@ -105,6 +106,7 @@
                                             <label>Type</label>
                                             <select class="form-control" v-model="attribute.type" :disabled="attribute.system">
                                                 <option value="text">Text</option>
+                                                <option value="number">Number</option>
                                                 <option value="richtext">Richtext</option>
                                                 <option value="select">Select</option>
                                             </select>
